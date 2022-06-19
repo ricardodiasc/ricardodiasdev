@@ -28,7 +28,8 @@ const BlogIndex = ({ data, location }) => {
       <Seo title="All posts" />
       <Bio />
       <ol style={{ listStyle: `none` }}>
-        {posts.map(post => {
+        {posts.filter(p => p.frontmatter.enabled).map(post => {
+          console.log(post);
           const title = post.frontmatter.title || post.fields.slug
 
           return (
@@ -82,6 +83,7 @@ export const pageQuery = graphql`
           date(formatString: "MMMM DD, YYYY")
           title
           description
+          enabled
         }
       }
     }

@@ -3,7 +3,7 @@ module.exports = {
     title: `Ricardo Dias Dev Blog`,
     author: {
       name: `Ricardo Dias`,
-      summary: `Java and Javascript can live together.`,
+      summary: `.`,
     },
     description: `Some of my learnigs and rumbles.`,
     siteUrl: `https://ricardodias.dev/`,
