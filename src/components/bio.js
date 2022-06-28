@@ -43,13 +43,16 @@ const Bio = () => {
         alt="Profile picture"
       />
       {author?.name && (
-        <p>
-          Written by <strong>{author.name}</strong> <div>{author?.summary || null}</div>
-          {` `}
-          <a href={`https://twitter.com/${social?.twitter || ``}`}>
-            Follow me on Twitter
-          </a>
-        </p>
+        <div>
+          <p>
+            Written by <strong>{author.name}</strong>
+            {` `}
+            <a href={`https://twitter.com/${social?.twitter || ``}`}>
+              Follow me on Twitter
+            </a>
+          </p>
+          <div>{author?.summary || null}</div>
+        </div>
       )}
     </div>
   )

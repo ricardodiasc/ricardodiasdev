@@ -16,6 +16,9 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
           limit: 1000
         ) {
           nodes {
+            frontmatter {
+							enabled
+            }
             id
             fields {
               slug
@@ -40,20 +43,44 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
 
+  function findPrevPost(posts, index){
+    if(index === 0) return null;
+    for (let i = index - 1; i > 0; i--) {
+      if (posts[i].frontmatter.enabled) {
+        return posts[i].id;
+      }  
+    }
+    return null;
+  }
+
+  function findNextPost(posts, index) {
+    if( index === posts.length - 1) return null;
+    for (let i = index + 1; i < posts.length; i++) {
+      if (posts[i].frontmatter.enabled) {
+        return posts[i].id;
+      }  
+    }
+
+    return null;
+  }
+
   if (posts.length > 0) {
     posts.forEach((post, index) => {
-      const previousPostId = index === 0 ? null : posts[index - 1].id
-      const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
+      const previousPostId = findPrevPost(posts, index);
+      const nextPostId = findNextPost(posts, index);
 
-      createPage({
-        path: post.fields.slug,
-        component: blogPost,
-        context: {
-          id: post.id,
-          previousPostId,
-          nextPostId,
-        },
-      })
+      if(post.frontmatter.enabled) {
+        createPage({
+          path: post.fields.slug,
+          component: blogPost,
+          context: {
+            id: post.id,
+            previousPostId,
+            nextPostId,
+          },
+        })
+      }
+      
     })
   }
 }
