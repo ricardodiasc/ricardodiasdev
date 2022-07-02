@@ -17,7 +17,7 @@ const Layout = ({ location, title, children }) => {
       <Link className="header-link-home" to="/">
         {title}
       </Link>
-    )
+    );
   }
 
   return (
@@ -30,7 +30,7 @@ const Layout = ({ location, title, children }) => {
         <a href="https://www.gatsbyjs.com">Gatsby</a>
       </footer>
     </div>
-  )
+  );
 }
 
-export default Layout
+export default Layout;

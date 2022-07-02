@@ -1,7 +1,7 @@
 ---
-title: This is second test
-date: "2022-06-27T22:40:32.169Z"
-description: "Second test"
+title: How to slim down a java docker image
+date: "2022-05-18T22:40:32.169Z"
+description: "How to slim down a java docker image"
 enabled: true
 ---
 
